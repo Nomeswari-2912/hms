@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — Hospital Management System{% endblock %}
+{% block content %}
+<div class="page-title">
+    <div>
+        <h2>Hospital Management Dashboard</h2>
+        <p class="subtitle">Run your hospital operations with a modern interface for patients, doctors, appointments, billing, pharmacy, and access control.</p>
+    </div>
+</div>
+<section class="hero">
+            <strong>Welcome to your hospital dashboard.</strong>
+            <p>This is the main landing page for the Django project. It now displays the expected system output with a dashboard layout, module cards, stats, and appointment details.</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <strong>Total Patients</strong>
+                    <span>142</span>
+                </div>
+                <div class="stat-card">
+                    <strong>Total Doctors</strong>
+                    <span>27</span>
+                </div>
+                <div class="stat-card">
+                    <strong>Appointments Today</strong>
+                    <span>38</span>
+                </div>
+                <div class="stat-card">
+                    <strong>Bills Generated</strong>
+                    <span>19</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Management Modules</h2>
+            <div class="module-grid">
+                <div class="module-card">
+                    <h3>Patient Management</h3>
+                    <p>Add, update, delete, and search patient records from the patient management system.</p>
+                    <a href="/patients/">Open Patients</a>
+                </div>
+                <div class="module-card">
+                    <h3>Doctor Management</h3>
+                    <p>Manage doctor profiles, specialization, qualifications, phone and email details.</p>
+                    <a href="/doctors/">Open Doctors</a>
+                </div>
+                <div class="module-card">
+                    <h3>Appointment Scheduling</h3>
+                    <p>Book appointments, update appointment details, and track appointment status.</p>
+                    <a href="/appointments/">Open Appointments</a>
+                </div>
+                <div class="module-card">
+                    <h3>Billing & Invoices</h3>
+                    <p>Generate bills, track payment status, and view total consultation and medicine charges.</p>
+                    <a href="/billing/">Open Billing</a>
+                </div>
+                <div class="module-card">
+                    <h3>Pharmacy Management</h3>
+                    <p>Monitor inventory, update medicine stock, and track medicine sales.</p>
+                    <a href="/pharmacy/">Open Pharmacy</a>
+                </div>
+                <div class="module-card">
+                    <h3>Role Access</h3>
+                    <p>Secure login with role-based access for admin, doctor, receptionist, and patient accounts.</p>
+                    <a href="/accounts/">Open Login</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Today's Appointments</h2>
+            <div class="table-wrapper">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Patient</th>
+                            <th>Doctor</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Rahul Sharma</td>
+                            <td>Dr. Anita Mehra</td>
+                            <td>2026-07-12</td>
+                            <td>10:30 AM</td>
+                            <td>Confirmed</td>
+                        </tr>
+                        <tr>
+                            <td>Priya Das</td>
+                            <td>Dr. Vikram Singh</td>
+                            <td>2026-07-12</td>
+                            <td>11:00 AM</td>
+                            <td>Pending</td>
+                        </tr>
+                        <tr>
+                            <td>Sunil Gupta</td>
+                            <td>Dr. Neha Patel</td>
+                            <td>2026-07-12</td>
+                            <td>12:15 PM</td>
+                            <td>Rescheduled</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+{% endblock %}

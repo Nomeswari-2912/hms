@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Pharmacy Management{% endblock %}
+{% block content %}
+<section class="section card">
+    <div class="inline-grid">
+        <div>
+            <h2>Pharmacy Management</h2>
+            <p>Track medicine stock, pricing, and inventory levels.</p>
+        </div>
+        <div class="actions">
+            <a class="button" href="?action=add">Add Medicine</a>
+        </div>
+    </div>
+</section>
+{% if form %}
+<section class="section card">
+    <h2>{% if medicine %}Edit Medicine{% else %}Add Medicine{% endif %}</h2>
+    <form method="post" class="form-card">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="actions">
+            <button class="button" type="submit">Save</button>
+            <a class="button secondary" href="/pharmacy/">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endif %}
+<section class="section card">
+    <h2>Medicine Inventory</h2>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for medicine in medicines %}
+                    <tr>
+                        <td>{{ medicine.id }}</td>
+                        <td>{{ medicine.name }}</td>
+                        <td>{{ medicine.quantity }}</td>
+                        <td>₹{{ medicine.price }}</td>
+                        <td>
+                            <a class="button secondary" href="?action=edit&id={{ medicine.id }}">Edit</a>
+                            <a class="button secondary" href="?action=delete&id={{ medicine.id }}">Delete</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="5">No medicine inventory available.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

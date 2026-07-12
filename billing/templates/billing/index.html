@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Billing Management{% endblock %}
+{% block content %}
+<section class="section card">
+    <div class="inline-grid">
+        <div>
+            <h2>Billing Management</h2>
+            <p>Generate invoices, verify payment status, and manage billing details for patients.</p>
+        </div>
+        <div class="actions">
+            <a class="button" href="?action=add">Add Invoice</a>
+        </div>
+    </div>
+</section>
+<section class="section card">
+    {% if form %}
+        <h2>{% if invoice %}Edit Invoice{% else %}Add Invoice{% endif %}</h2>
+        <form method="post" class="form-card">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="actions">
+                <button class="button" type="submit">Save</button>
+                <a class="button secondary" href="/billing/">Cancel</a>
+            </div>
+        </form>
+    {% endif %}
+</section>
+<section class="section card">
+    <h2>Invoice List</h2>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Patient</th>
+                    <th>Consultation</th>
+                    <th>Medicine</th>
+                    <th>Tests</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Issued</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for invoice in invoices %}
+                    <tr>
+                        <td>{{ invoice.id }}</td>
+                        <td>{{ invoice.patient }}</td>
+                        <td>₹{{ invoice.consultation_fee }}</td>
+                        <td>₹{{ invoice.medicine_cost }}</td>
+                        <td>₹{{ invoice.test_charges }}</td>
+                        <td>₹{{ invoice.total_amount }}</td>
+                        <td>{{ invoice.payment_status }}</td>
+                        <td>{{ invoice.issued_date }}</td>
+                        <td>
+                            <a class="button secondary" href="?action=edit&id={{ invoice.id }}">Edit</a>
+                            <a class="button secondary" href="?action=delete&id={{ invoice.id }}">Delete</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="9">No invoices found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

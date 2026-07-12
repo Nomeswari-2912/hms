@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient Management</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            background: #080a0b;
+            color: #edf2ff;
+            font-family: Inter, system-ui, sans-serif;
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            padding: 24px;
+            background: radial-gradient(circle at top left, rgba(74, 199, 149, 0.17), transparent 26%),
+                        radial-gradient(circle at right, rgba(90, 130, 255, 0.14), transparent 24%),
+                        #080a0e;
+        }
+        .page {
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        .toolbar h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 2.6rem);
+        }
+        .toolbar a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 999px;
+            background: #5de6b8;
+            color: #08101f;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+            margin-bottom: 24px;
+        }
+        .summary-card {
+            background: rgba(255,255,255,.05);
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 20px;
+            padding: 20px;
+        }
+        .summary-card strong {
+            display: block;
+            margin-bottom: 10px;
+            color: #f4f8ff;
+        }
+        .summary-card span {
+            font-size: 2rem;
+            color: #92e2ac;
+        }
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 22px;
+            border: 1px solid rgba(255,255,255,.08);
+            background: rgba(255,255,255,.02);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 720px;
+        }
+        th, td {
+            text-align: left;
+            padding: 16px 18px;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+        th {
+            color: #e6ecff;
+            background: rgba(255,255,255,.04);
+        }
+        td {
+            color: #cfd7f6;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(93, 230, 184, .16);
+            color: #d2f5de;
+            font-size: 0.95rem;
+        }
+        .footer {
+            margin-top: 24px;
+            color: #8f9ac4;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="toolbar">
+            <div>
+                <h1>Patient Management</h1>
+                <p style="margin:6px 0 0;color:#b7c2ea;">Add, update, delete, and search patient records from the hospital system.</p>
+            </div>
+            <a href="/">Back to Dashboard</a>
+        </div>
+
+        <div class="summary">
+            <div class="summary-card">
+                <strong>Total Patients</strong>
+                <span>142</span>
+            </div>
+            <div class="summary-card">
+                <strong>Active Patients</strong>
+                <span>121</span>
+            </div>
+            <div class="summary-card">
+                <strong>Pending Records</strong>
+                <span>7</span>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Patient ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Contact</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Rahul Sharma</td>
+                        <td>25</td>
+                        <td>Male</td>
+                        <td>+91 98765 43210</td>
+                        <td><span class="status">Edit | Delete</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Priya Das</td>
+                        <td>30</td>
+                        <td>Female</td>
+                        <td>+91 91234 56789</td>
+                        <td><span class="status">Edit | Delete</span></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Anita Verma</td>
+                        <td>42</td>
+                        <td>Female</td>
+                        <td>+91 99887 66554</td>
+                        <td><span class="status">Edit | Delete</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">This page is the patient management view. I can also add forms to create and edit patients if you want.</div>
+    </div>
+</body>
+</html>

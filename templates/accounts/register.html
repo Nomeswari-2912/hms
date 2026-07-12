@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Register — Hospital Management System{% endblock %}
+{% block content %}
+<div class="page-title">
+    <div>
+        <h2>Create an account</h2>
+        <p class="subtitle">Register with your name and phone number. The phone number becomes your login password.</p>
+    </div>
+</div>
+<section class="card" style="max-width: 520px; margin: 0 auto;">
+    <form method="post" class="form-card">
+        {% csrf_token %}
+        {% if message %}
+            <div class="message">{{ message }}</div>
+        {% endif %}
+        <label>
+            Name
+            <input type="text" name="name" value="{{ name }}" placeholder="Enter your name" required />
+        </label>
+        <label>
+            Phone number
+            <input type="tel" name="phone" value="{{ phone }}" placeholder="e.g. +91 98765 43210 or +1 555 123 4567" required />
+        </label>
+        <button class="button" type="submit">Create Account</button>
+        <div class="actions">
+            <a class="button secondary" href="{% url 'accounts_home' %}">Back to Login</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

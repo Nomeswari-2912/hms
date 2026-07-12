@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Appointment Scheduling{% endblock %}
+{% block content %}
+<section class="section card">
+    <div class="inline-grid">
+        <div>
+            <h2>Appointment Scheduling</h2>
+            <p>Book and manage patient appointments with doctors.</p>
+        </div>
+        <div class="actions">
+            <a class="button" href="?action=add">Book Appointment</a>
+        </div>
+    </div>
+</section>
+{% if form %}
+<section class="section card">
+    <h2>{% if appointment %}Edit Appointment{% else %}Book Appointment{% endif %}</h2>
+    <form method="post" class="form-card">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="actions">
+            <button class="button" type="submit">Save</button>
+            <a class="button secondary" href="/appointments/">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endif %}
+<section class="section card">
+    <h2>Appointment List</h2>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                    <tr>
+                        <td>{{ appointment.id }}</td>
+                        <td>{{ appointment.patient }}</td>
+                        <td>{{ appointment.doctor }}</td>
+                        <td>{{ appointment.date }}</td>
+                        <td>{{ appointment.time }}</td>
+                        <td>{{ appointment.status }}</td>
+                        <td>
+                            <a class="button secondary" href="?action=edit&id={{ appointment.id }}">Edit</a>
+                            <a class="button secondary" href="?action=delete&id={{ appointment.id }}">Delete</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="7">No appointments available.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

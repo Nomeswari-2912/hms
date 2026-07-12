@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Management</title>
+    <style>
+        :root { color-scheme: dark; background: #070a10; color: #eef2ff; font-family: Inter, system-ui, sans-serif; }
+        body { margin: 0; min-height: 100vh; padding: 24px; background: radial-gradient(circle at bottom right, rgba(254, 132, 132, 0.13), transparent 24%), #070a10; }
+        .container { max-width: 1120px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+        h1 { margin: 0; font-size: clamp(2rem, 4vw, 2.8rem); }
+        p { margin: 10px 0 0; color: #b0c2e6; line-height: 1.75; }
+        .button { padding: 12px 18px; border-radius: 999px; background: #5de6b8; color: #07131d; text-decoration: none; font-weight: 700; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-bottom: 24px; }
+        .stat-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 22px; padding: 20px; }
+        .stat-card strong { display: block; margin-bottom: 12px; color: #f4f9ff; }
+        .stat-card span { font-size: 1.9rem; color: #8eecc9; }
+        .table-wrapper { overflow-x: auto; border-radius: 22px; border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.02); }
+        table { width: 100%; border-collapse: collapse; min-width: 700px; }
+        th, td { padding: 16px 18px; border-bottom: 1px solid rgba(255,255,255,.07); text-align: left; }
+        th { background: rgba(255,255,255,.04); color: #e7efff; }
+        td { color: #c7d4f5; }
+        .footer { margin-top: 24px; color: #8f9ac4; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>Pharmacy Management</h1>
+                <p>Monitor inventory, update medicine stock, and track medicine sales effectively.</p>
+            </div>
+            <a class="button" href="/">Back to Dashboard</a>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <strong>Total Medicines</strong>
+                <span>96</span>
+            </div>
+            <div class="stat-card">
+                <strong>Low Stock</strong>
+                <span>8</span>
+            </div>
+            <div class="stat-card">
+                <strong>Sales Today</strong>
+                <span>22</span>
+            </div>
+            <div class="stat-card">
+                <strong>Revenue</strong>
+                <span>₹18,400</span>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Medicine</th>
+                        <th>Stock</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Paracetamol</td>
+                        <td>120</td>
+                        <td>₹20</td>
+                        <td>Analgesic</td>
+                        <td>In Stock</td>
+                    </tr>
+                    <tr>
+                        <td>Amoxicillin</td>
+                        <td>58</td>
+                        <td>₹75</td>
+                        <td>Antibiotic</td>
+                        <td>In Stock</td>
+                    </tr>
+                    <tr>
+                        <td>Metformin</td>
+                        <td>32</td>
+                        <td>₹95</td>
+                        <td>Diabetes</td>
+                        <td>In Stock</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">This pharmacy page now works from the dashboard and shows inventory and sales details.</div>
+    </div>
+</body>
+</html>

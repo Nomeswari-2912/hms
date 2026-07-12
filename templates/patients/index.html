@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Patient Management — Hospital Management System{% endblock %}
+{% block content %}
+<div class="page-title">
+    <div>
+        <h2>Patient Management</h2>
+        <p class="subtitle">Keep patient data organized in a clean, modern dashboard.</p>
+    </div>
+    <div class="actions">
+        <a class="button" href="?action=add">Add Patient</a>
+    </div>
+</div>
+<section class="hero">
+    <strong>Manage patient records efficiently.</strong>
+    <p>Use the patient management area to add new records, edit details, and ensure the hospital database stays accurate.</p>
+</section>
+{% if form %}
+<section class="card">
+    <h3>{% if patient %}Edit Patient{% else %}Add Patient{% endif %}</h3>
+    <form method="post" class="form-card">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="actions">
+            <button class="button" type="submit">Save</button>
+            <a class="button secondary" href="/patients/">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endif %}
+<section class="card">
+    <h3>Patient List</h3>
+    <div class="table-wrapper">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Date of Birth</th>
+                    <th>Contact Number</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in patients %}
+                    <tr>
+                        <td>{{ patient.id }}</td>
+                        <td>{{ patient.first_name }} {{ patient.last_name }}</td>
+                        <td>{{ patient.date_of_birth }}</td>
+                        <td>{{ patient.contact_number }}</td>
+                        <td>
+                            <a class="button secondary" href="?action=edit&id={{ patient.id }}">Edit</a>
+                            <a class="button secondary" href="?action=delete&id={{ patient.id }}">Delete</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="5" class="empty-state">No patients available.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

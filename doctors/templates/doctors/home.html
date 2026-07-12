@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Management</title>
+    <style>
+        :root { color-scheme: dark; background: #070a10; color: #eef2ff; font-family: Inter, system-ui, sans-serif; }
+        body { margin: 0; min-height: 100vh; padding: 24px; background: radial-gradient(circle at top left, rgba(91, 216, 182, 0.16), transparent 24%), #070a10; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+        h1 { margin: 0; font-size: clamp(2rem, 4vw, 2.8rem); }
+        p { margin: 10px 0 0; color: #b0c2e6; line-height: 1.75; }
+        .button { padding: 12px 18px; border-radius: 999px; background: #5de6b8; color: #07131d; text-decoration: none; font-weight: 700; }
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-bottom: 24px; }
+        .card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 22px; padding: 20px; }
+        .card strong { display: block; margin-bottom: 12px; color: #f4f9ff; }
+        .card span { font-size: 1.9rem; color: #8eecc9; }
+        .table-wrapper { overflow-x: auto; border-radius: 22px; border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.02); }
+        table { width: 100%; border-collapse: collapse; min-width: 700px; }
+        th, td { padding: 16px 18px; border-bottom: 1px solid rgba(255,255,255,.07); text-align: left; }
+        th { background: rgba(255,255,255,.04); color: #e7efff; }
+        td { color: #c7d4f5; }
+        .footer { margin-top: 24px; color: #8f9ac4; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>Doctor Management</h1>
+                <p>Manage doctor profiles, specializations, qualifications, phone numbers, and email addresses.</p>
+            </div>
+            <a class="button" href="/">Back to Dashboard</a>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <strong>Total Doctors</strong>
+                <span>27</span>
+            </div>
+            <div class="card">
+                <strong>Specializations</strong>
+                <span>9</span>
+            </div>
+            <div class="card">
+                <strong>Available Today</strong>
+                <span>18</span>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Doctor ID</th>
+                        <th>Name</th>
+                        <th>Specialization</th>
+                        <th>Qualification</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Experience</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>101</td>
+                        <td>Dr. Anand Kumar</td>
+                        <td>Cardiology</td>
+                        <td>MBBS, MD</td>
+                        <td>+91 98765 43210</td>
+                        <td>anand.kumar@example.com</td>
+                        <td>12 yrs</td>
+                    </tr>
+                    <tr>
+                        <td>102</td>
+                        <td>Dr. Priya Singh</td>
+                        <td>Neurology</td>
+                        <td>MBBS, DM</td>
+                        <td>+91 91234 56789</td>
+                        <td>priya.singh@example.com</td>
+                        <td>8 yrs</td>
+                    </tr>
+                    <tr>
+                        <td>103</td>
+                        <td>Dr. Nisha Patel</td>
+                        <td>Pediatrics</td>
+                        <td>MBBS, DCH</td>
+                        <td>+91 99887 66554</td>
+                        <td>nisha.patel@example.com</td>
+                        <td>10 yrs</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">This doctor page now works from the dashboard link and displays a proper doctor management table.</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Login — Hospital Management System{% endblock %}
+{% block content %}
+<div class="page-title">
+    <div>
+        <h2>Login to Hospital Management</h2>
+        <p class="subtitle">Enter your name and phone number to sign in. The login format expects a phone in +91 or +1 format.</p>
+    </div>
+</div>
+<section class="card" style="max-width: 520px; margin: 0 auto;">
+    <form method="post" class="form-card">
+        {% csrf_token %}
+        {% if message %}
+            <div class="message">{{ message }}</div>
+        {% endif %}
+        <label>
+            Name
+            <input type="text" name="name" placeholder="Enter your name" required />
+        </label>
+        <label>
+            Phone number
+            <input type="tel" name="phone" placeholder="e.g. +91 98765 43210 or +1 555 123 4567" required />
+        </label>
+        <button class="button" type="submit">Sign In</button>
+        <p style="margin: 0; color: #a7b6d8; font-size: 0.95rem;">Use your account name as the login name and your phone number as the password.</p>
+        <div class="actions">
+            <a class="button secondary" href="{% url 'accounts_register' %}">Register</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

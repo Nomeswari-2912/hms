@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Hospital Management System{% endblock %}</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 16px;
+            background: #06090f;
+            color: #eef4ff;
+        }
+        * { box-sizing: border-box; }
+        html, body { margin: 0; min-height: 100%; }
+        body {
+            background: radial-gradient(circle at top left, rgba(93, 230, 184, 0.14), transparent 24%),
+                        radial-gradient(circle at 95% 0%, rgba(124, 86, 255, 0.16), transparent 18%),
+                        linear-gradient(180deg, #070b12 0%, #04060a 100%);
+            color: #e9f2ff;
+        }
+        a { color: inherit; text-decoration: none; }
+        .wrapper { width: min(1180px, 100%); margin: 0 auto; padding: 32px 24px 42px; }
+        header { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; margin-bottom: 32px; flex-wrap: wrap; }
+        .brand { display: grid; gap: 12px; max-width: 720px; }
+        .brand h1 { margin: 0; font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1.03; letter-spacing: -0.04em; }
+        .brand p { margin: 0; color: #c4d1f5; line-height: 1.75; max-width: 680px; }
+        nav { display: flex; flex-wrap: wrap; gap: 10px; }
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 120px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.08);
+            color: #eef4ff;
+            font-weight: 600;
+            transition: transform .2s ease, background .2s ease, border-color .2s ease;
+        }
+        .nav-link:hover { transform: translateY(-1px); background: rgba(93, 230, 184, 0.18); border-color: rgba(93, 230, 184, 0.24); }
+        .page-title { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 24px; }
+        .page-title h2 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.4rem); }
+        .page-title .subtitle { color: #b8c4e5; max-width: 760px; }
+        .hero { display: grid; gap: 20px; padding: 30px; border-radius: 28px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); box-shadow: 0 25px 90px rgba(0,0,0,.2); }
+        .hero strong { display: block; font-size: clamp(1.1rem, 1.3vw, 1.2rem); color: #8aecdb; }
+        .hero p { margin: 0; line-height: 1.8; color: #d1d9f1; }
+        .grid { display: grid; gap: 18px; }
+        .stats-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+        .card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 24px; box-shadow: 0 24px 80px rgba(0,0,0,.18); padding: 24px; }
+        .card h3 { margin: 0 0 12px; font-size: 1.15rem; }
+        .card p { margin: 0; color: #c4d0f6; line-height: 1.7; }
+        .stat-card { padding: 22px; background: linear-gradient(180deg, rgba(93,230,184,.14), rgba(255,255,255,.02)); }
+        .stat-card strong { display: block; margin-bottom: 11px; color: #f7fbff; font-size: 0.95rem; }
+        .stat-card span { font-size: 2.2rem; color: #ffffff; }
+        .module-card { padding: 22px; min-height: 190px; display: grid; gap: 14px; }
+        .module-card h3 { font-size: 1.1rem; color: #f8fbff; }
+        .module-card a { display: inline-flex; align-items: center; justify-content: center; padding: 11px 16px; width: fit-content; border-radius: 999px; background: #5de6b8; color: #07121a; font-weight: 700; }
+        .button { display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border-radius: 999px; background: #5de6b8; color: #08131d; border: none; font-weight: 700; cursor: pointer; text-decoration: none; }
+        .button.secondary { background: rgba(255,255,255,.08); color: #eef4ff; }
+        .button.secondary:hover { background: rgba(255,255,255,.14); }
+        .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+        .form-card { display: grid; gap: 18px; }
+        label { display: grid; gap: 8px; font-weight: 600; color: #eef4ff; }
+        input, select, textarea { width: 100%; padding: 14px 16px; border-radius: 16px; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); color: #eef4ff; outline: none; }
+        textarea { min-height: 140px; resize: vertical; }
+        table { width: 100%; border-collapse: collapse; border-radius: 18px; overflow: hidden; background: rgba(255,255,255,.03); }
+        th, td { padding: 16px 18px; text-align: left; border-bottom: 1px solid rgba(255,255,255,.08); }
+        th { background: rgba(255,255,255,.06); color: #eef4ff; font-weight: 600; }
+        td { color: #c9d2f4; }
+        tr:last-child td { border-bottom: none; }
+        .table-wrapper { overflow-x: auto; }
+        .empty-state { color: #b7c5e3; }
+        @media (max-width: 900px) {
+            .wrapper { padding: 24px 18px 36px; }
+            .page-title { flex-direction: column; align-items: flex-start; }
+        }
+        @media (max-width: 720px) {
+            header { gap: 14px; }
+            .nav-link { min-width: unset; }
+            .grid { gap: 16px; }
+            th, td { padding: 14px 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="brand">
+                <h1>Hospital Management System</h1>
+                <p>Centralized hospital operations with modern dashboards, clean records management, and polished workflows for patients, doctors, appointments, billing, and pharmacy.</p>
+            </div>
+            <nav>
+                <a class="nav-link" href="/">Dashboard</a>
+                <a class="nav-link" href="/patients/">Patients</a>
+                <a class="nav-link" href="/doctors/">Doctors</a>
+                <a class="nav-link" href="/appointments/">Appointments</a>
+                <a class="nav-link" href="/billing/">Billing</a>
+                <a class="nav-link" href="/pharmacy/">Pharmacy</a>
+                {% if user.is_authenticated %}
+                    <span class="nav-link" style="background: rgba(93, 230, 184, .12);">{{ user.username }}</span>
+                    <a class="nav-link" href="{% url 'accounts_logout' %}">Logout</a>
+                {% else %}
+                    <a class="nav-link" href="{% url 'accounts_home' %}">Login</a>
+                    <a class="nav-link" href="{% url 'accounts_register' %}">Register</a>
+                {% endif %}
+            </nav>
+        </header>
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

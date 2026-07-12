@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Patient Management{% endblock %}
+{% block content %}
+<section class="section card">
+    <div class="inline-grid">
+        <div>
+            <h2>Patient Management</h2>
+            <p>View and manage patient records. Add new patients or delete existing records with a single click.</p>
+        </div>
+        <div class="actions">
+            <a class="button" href="?action=add">Add Patient</a>
+        </div>
+    </div>
+</section>
+<section class="section card">
+    {% if form %}
+        <h2>{% if patient %}Edit Patient{% else %}Add Patient{% endif %}</h2>
+        <form method="post" class="form-card">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="actions">
+                <button class="button" type="submit">Save</button>
+                <a class="button secondary" href="/patients/">Cancel</a>
+            </div>
+        </form>
+    {% endif %}
+</section>
+<section class="section card">
+    <h2>Patient List</h2>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Date of Birth</th>
+                    <th>Contact</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in patients %}
+                    <tr>
+                        <td>{{ patient.id }}</td>
+                        <td>{{ patient.first_name }} {{ patient.last_name }}</td>
+                        <td>{{ patient.date_of_birth }}</td>
+                        <td>{{ patient.contact_number }}</td>
+                        <td>
+                            <a class="button secondary" href="?action=edit&id={{ patient.id }}">Edit</a>
+                            <a class="button secondary" href="?action=delete&id={{ patient.id }}">Delete</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="5">No patients found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}
