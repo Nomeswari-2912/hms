@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: hms
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn hospital_management_system.wsgi
+    envVars:
+      - key: DEBUG
+        value: "False"
+      - key: PYTHONUNBUFFERED
+        value: "1"
