@@ -1,7 +1,11 @@
 services:
   - type: web
-    name: hms
+    name: hospital-management-system
     runtime: python
     pythonVersion: 3.11
-    buildCommand: pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --noinput
+    plan: free
     startCommand: gunicorn hospital_management_system.wsgi:application --bind 0.0.0.0:$PORT
+    buildCommand: pip install -r requirements.txt
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"
